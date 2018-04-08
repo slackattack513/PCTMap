@@ -1,0 +1,94 @@
+   .top_header {
+       /*position:fixed;*/
+       border: 5px solid yellow;
+       margin: 2px;
+       color: red;
+   }
+
+   .panel {
+       border: 5px solid red;
+       margin: 2px;
+   }
+
+   .main_content_container {
+       border: 2px solid gray;
+       display: -webkit-flex;
+       -webkit-align-items: center;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+   }
+
+   .body {
+       /*background-image: url("Mini.jpg");*/
+       background-color: white;
+       background-repeat: repeat-y;
+       left: 0px;
+       width: 100%;
+       height: 100%;
+       margin: 0px;
+       padding: 0px;
+       border: 0px;
+   }
+
+   #map {
+       height: 500px;
+       width: 500px;
+       margin: auto;
+   }
+
+   #main_content {
+       /*height: 100%;*/
+       width: 100%;
+       margin: auto;
+       /*display: -webkit-flex;*/
+       /*Safari */
+       -webkit-align-items: center;
+       -webkit-justify-content: center;
+       /* Safari 7.0+ */
+       /*display: flex;*/
+       align-items: center;
+       justify-content: center;
+       border: 5px solid yellow;
+   }
+
+   .sub_map_module {
+       border: 5px solid red;
+       margin: auto;
+       /*  display:flex;
+   justify-content: center;*/
+   }
+
+   .inlineElements {
+       display: -webkit-flex;
+       /* Safari */
+       -webkit-align-items: center;
+       /* Safari 7.0+ */
+       display: flex;
+       align-items: center;
+       justify-content: center;
+   }
+
+   .arrow:hover {
+       cursor: pointer;
+   }
+
+   .vertical-align {
+       display: flex;
+       align-items: center;
+   }
+
+   .left_arrow_div {
+       -webkit-transform: rotate(180deg);
+       transfom: rotate(180deg);
+   }
+
+   #right_arrow_nasa {
+       fill: #4f1313;
+   }
+
+   .svg-inline--fa {
+       font-size: 18px;
+       margin-top: 10px;
+       /*color:black;*/
+   }

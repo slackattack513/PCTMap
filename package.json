@@ -1,0 +1,24 @@
+{
+  "name": "pctmap",
+  "version": "1.0.0",
+  "description": "Log of Samuel Slack's 2018 PCT thru-hike",
+  "main": "main.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "electron-json-storage": "^3.0.7",
+    "express": "^4.15.4",
+    "handlebars": "^4.0.10",
+    "path": "^0.12.7",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "electron ."
+  },
+  "keywords": [
+    "pct",
+    "thruhike"
+  ],
+  "author": "Samuel Slack",
+  "license": "ISC"
+}

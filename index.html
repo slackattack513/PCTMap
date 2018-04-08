@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" media="screen" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+
+    
+
+
+    <link href="css/leaflet.awesome-markers.css" media="screen" rel="stylesheet">
+    <!-- <script src="js/bootstrap.min.js"> -->
+ <!--    </script> -->
+    <link href="css/fa-svg-with-js.css" rel="stylesheet">
+
+    
+    <script src="js/fontawesome-all.js"></script>
+    <script src="js/leaflet.awesome-markers.js"></script>
+    <script src="./dummy.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./globalVariables.js"></script>
+    <script type="text/javascript" src="./pictureRowClass.js"></script>
+    <script type="text/javascript" src="./controller.js"></script>
+    <script type="text/javascript" src="./detailedEntryModuleClass.js"></script>
+     <script type="text/javascript" src="./entryController.js"></script>
+     <script type="text/javascript" src="./traceIP.js" id="IPScript"></script>
+<script type="text/javascript" src="./makeMap.js"></script>
+<script type="text/javascript" src="./EntryClass.js"></script>
+<script type="text/javascript" src="./MapClass.js">
+</script>
+<script type="text/javascript" src="./markerIconController.js"></script>
+    <!-- <script type="text/javascript" src="controller.js"></script> -->
+    <!-- <script type="text/javascript">console.log('Dum: ' + dum);</script> -->
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7LEHBaSDdzDz9Yr2uw61cE_-wwLbLc5M&callback=initMap"
+  type="text/javascript"></script> -->.
+    <script>
+    window.$ = window.jQuery = require('./jquery-3.2.1.js');
+    </script>
+    <!-- <script type="text/javascript">
+    function loadScriptSync(src) {
+        // for (i = 0; i<src_array.length;i++){
+        // src = src_array[i];
+        var s = document.createElement('script');
+        s.src = src;
+        s.type = "text/javascript";
+        s.async = false;
+        // p = new Promise()                           // <-- this is important
+        document.getElementsByTagName('head')[0].appendChild(s);
+        // }
+        if ($('script[src="' + src + '"]').length > 0) {
+            console.log('About to resolve in index');
+            return Promise.resolve();
+        }
+    }
+    </script> -->
+    <!-- <script src="./smallworld.js"</script> -->
+    <!-- // <script src="./smallworld.js/src/smallworld.jquery.js"></script> -->
+    <!-- <script> require('./node_modules/leaflet/src/Leaflet.js');</script> -->
+    <!-- <script src="./node_modules/leaflet/src/Leaflet.js"></script> -->
+    
+    <title>Hello World!</title>
+    <style>
+    /*
+       .date_content {
+           position: absolute;
+           right:0px;
+           width:40%;
+           border: 3px dotted gray;
+           margin:5px;
+           display:inline-block;
+       }
+
+       .main_content {
+           position: absolute;
+           display: inline-block;
+           left:0px;
+           width:40%;
+           border: 3px dotted black;
+           margin:5px;
+
+       }*/
+
+
+
+    
+
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        /* Location of the box */
+        top: 0;
+        left: 0;
+        margin: auto;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Black w/ opacity */
+    }
+    /* Modal Content (Image) */
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 90%;
+        max-width: 700px;
+    }
+    /* Caption of Modal Image (Image Text) - Same Width as the Image */
+
+    #modal_caption {
+        margin: auto;
+        display: block;
+        width: 90%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+    }
+    /* Add Animation - Zoom in the Modal */
+
+    .modal-content,
+    #modal_caption {
+        -webkit-animation-name: zoom;
+        -webkit-animation-duration: .6s;
+        animation-name: zoom;
+        animation-duration: .6s;
+    }
+
+    @-webkit-keyframes zoom {
+        from {
+            -webkit-transform: scale(0)
+        }
+        to {
+            -webkit-transform: scale(1)
+        }
+    }
+
+    @keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+        to {
+            transform: scale(1)
+        }
+    }
+    /* The Close Button */
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    /* 100% Image Width on Smaller Screens */
+
+    @media only screen and (max-width: 700px) {
+        .modal-content {
+            width: 100%;
+        }
+    }
+
+ 
+
+    .right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+
+    .left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
+
+    .up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+    }
+
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+
+    
+    }
+
+    #weather_list {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #contextmenu {
+        background-color: beige;
+        opacity: 80%;
+    }
+
+    #contextmenu a {
+        text-decoration: none;
+        color: black;
+    }
+
+    #contextmenu p {
+        color: white;
+        text-align: center;
+        ;
+    }
+    </style>
+    <link href="css/pct_style.css" rel="stylesheet">
+</head>
+
+<body id="body">
+    <div class="container">
+        <div class="row">
+            <div class="span12 top_header">
+                <div id="top_header_content">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="left_side_panel panel span2">
+                <div id="left_side_panel_content" class="panel_content">
+                </div>
+            </div>
+            <div id="main_content_container" class="main_content_container span8">
+                <div id="main_content" class="row">
+                    <!-- <p>Hello</p> -->
+                    <div id="map" class="row"></div>
+                   <!--  <div id="sub_map_module" class="row">
+                        <p id="sub_map_module_p" class="row">
+                            <p>
+                                <br>
+                             
+                    </div> -->
+                   
+                </div>
+            </div>
+            <div class="right_side_panel panel span2">
+                <div id="right_side_panel_content" class="panel_content">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+var mainContent = document.getElementById("main_content");
+// mainContent.onclick = function() { resizeMiddleContent(4)};
+
+function resizeMiddleContent(newSpan) {
+
+    console.log("newSpan " + newSpan);
+
+    var mainContainer = document.getElementById("main_content_container");
+    var classes = mainContainer.classList;
+    var offset_regex = /offset/;
+    var span_regex = /span/;
+
+    /* check existing classes to ensure that the offset is properly updated */
+    console.log(classes)
+    classes.forEach(function(value, key, object) {
+        if (offset_regex.test(value)) {
+            oldOffset = /\d+/g.exec(value); //value.match(/\d+/g);
+            console.log("oldOffset " + oldOffset);
+
+        }
+        if (span_regex.test(value)) {
+            oldSpan = /\d+/g.exec(value);
+            console.log("oldSpan " + oldSpan);
+        }
+    });
+
+
+    var oldOffset;
+    var newOffset;
+
+    var oldSpanText = "span" + oldSpan;
+    console.log("oldSpanText: " + oldSpanText);
+    var newSpanText = "span" + newSpan;
+
+    var spanDiff = parseInt(newSpan) - parseInt(oldSpan);
+    console.log("span diff: " + spanDiff);
+    var newOffset = -1 * spanDiff + parseInt(oldOffset);
+    console.log("newOffset " + newOffset);
+
+    var oldOffsetText = "offset" + oldOffset;
+    var newOffsetText = "offset" + newOffset;
+
+    /* Update the classes */
+
+    classes.remove(oldSpanText);
+    classes.remove(oldOffsetText);
+    classes.add(newSpanText);
+    classes.add(newOffsetText);
+}
+</script>
+<script>
+var map;
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: { lat: -28, lng: 137 }
+    });
+
+    // NOTE: This uses cross-domain XHR, and may not work on older browsers.
+    map.data.loadGeoJson(
+        './PCTMap/pct.JSON');
+}
+</script>
+<!-- <script type="text/javascript">
+    $.getJSON("./PCTMap/pct.JSON", function(data) {
+        console.log('gotdata');
+    $('.map').smallworld({
+    geojson: data
+});
+});
+</script> -->
+<!-- <script>
+var mymap = L.map('map').setView([51.505, -0.09], 13);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+console.log('map made');
+</script> -->
+
+<script type="text/javascript">
+var myMaps = [];
+
+
+
+class GeoJSONLayer {
+    // options = {"data": GeoJSON Object, "file": JSON_file_to_load, "map": Map Object to add this layer to, "style": {style of layer}}
+    constructor(options) {
+        this._options = options;
+        this.addData(options && options.data ? options.data : function() { return options && options.file ? loadGEOJSON(options.file) : undefined });
+        console.log(this.getData());
+        this.makeLayer();
+        this.updateMap();
+    }
+
+    getData() {
+        return this.getOptions().data;
+    }
+
+    // data is GEOJSON Object
+    addData(data) {
+        this.getOptions().data = data;
+    }
+
+    getStyle() {
+        return this.getOptions().style;
+    }
+
+    makeLayer() {
+
+        this.getOptions().layer = new L.GeoJSON(this.getData(), { style: this.getStyle() });
+        // var d = this.getData();
+        // console.log('here');
+        // console.log(d);
+        // this.getOptions().layer = new L.geoJSON(d);
+    }
+
+    getLayer() {
+        return this.getOptions().layer;
+    }
+
+    getOptions() {
+        return this._options;
+    }
+
+    getMap() {
+        return this.getOptions().map;
+    }
+
+    updateMap() {
+        console.log("updateMapNoRsg");
+        if (this.getMap()) {
+            console.log("getMap() true");
+            console.log(this.getMap());
+            this.updateMap(this.getMap());
+        }
+    }
+
+    updateMap(newMap) {
+        newMap = newMap || this.getMap();
+        console.log("newMap:")
+        console.log(newMap);
+        this.getLayer().remove();
+        this.getLayer().addTo(newMap);
+    }
+
+
+    clone() {
+        return new GeoJSON(() => this.getOptions());
+    }
+
+
+
+
+}
+</script>
+<!-- <script src="./traceIP.js"></script> -->
+<!-- <script type="text/javascript" src="./makeMap.js"></script> -->
+
+<script>
+// var loaded = false;
+// var latLongPromise = getLatitudeAndLongitude();
+
+// latLongPromise
+//         .then(()=>{getCity(); ;})
+//         .then(()=>{getCountry()})
+//         .then(doneLoading())
+//         // .then(()=> {return Promise.resolve(true)})
+//         .catch(err => {console.log(err); loaded = true;}); 
+
+var mvController = new mainViewController(document.getElementById('main_content'))
+var eController = new entryController();
+var miController = new markerIconController(eController);
+
+
+var picRowParent = document.getElementById("main_content");
+var picRow = new pictureRow(picRowParent);
+
+
+newmap = makeMap();
+var newEntry = new Entry({
+    "fullText": "Started the PCT in Campo today!",
+    "description": "The Beginning",
+    "coordinates": [0, 0],
+    "onDoubleClick": "showEntryModule",
+    "onDoubleClickDOMText": document.getElementById("sub_map_module_p"),
+    "onDoubleClickDOMImages": picRow,
+    "pictures": ['IMG_1205.JPG', 'IMG_1206.JPG'],
+    "controller" : mvController,
+    "markerIconController":miController
+});
+
+var secEntry = new Entry({
+    "fullText": "Made it past Lake Morena Today",
+    "description": "Tired Legs",
+    "coordinates": [10, 0],
+    "onDoubleClick": "showEntryModule",
+    "onDoubleClickDOMText": document.getElementById("sub_map_module_p"),
+    "onDoubleClickDOMImages": picRow,
+    "pictures": ['IMG_1205.JPG', 'IMG_1206.JPG'],
+    "controller" : mvController,
+    "markerIconController":miController
+});
+
+eController.addEntry('day1', newEntry);
+eController.addEntry('day2', secEntry);
+
+
+
+
+
+
+getIPinfo()
+    .then(() => {
+        newmap.showMap({ "showOpenStreetMap": true, "centerCoordinates": [IP_data.latitude, IP_data.longitude], "zoom": 10 });
+        return Promise.resolve();
+    })
+    .then(() => {
+        var markers = eController.getAllEntries();
+        for (var i=0; i<markers.length;i++){
+            newmap.addEntry(markers[i]); 
+        }
+       
+
+
+    });
+
+
+
+
+//     function whenAvailable(name, callback) {
+//     var interval = 10; // ms
+//     window.setTimeout(function() {
+//         if (document.getElementById(name)) {
+//             callback(document.getElementById(name));
+//         } else {
+//             window.setTimeout(arguments.callee, interval);
+//         }
+//     }, interval);
+// }
+
+// whenAvailable("IPScript", function(t) {
+//     loadScriptSync('./makeMap.js');
+//     // do something
+// });
+
+// function loadMaps(){
+
+// }
+var maps = [];
+
+function getMap() {
+
+}
+
+// loadScriptSync(['./traceIP.js', './makeMap.js']);
+// loadScriptSync('./makeMap.js');
+
+
+// var executeTraceIP = new Promise(
+//     function(resolve, reject){
+//     loadScriptSync('./traceIP.js')
+//         .then(resolve());
+// }
+// )
+
+// executeTraceIP
+//     .then(()=>{
+//         console.log("tIP: "+ IP_data);
+//         console.log("City: "+IP_data.city);
+//         console.log("Country: " +IP_data.country);
+//         loadScriptSync('./makeMap.js');
+//     });
+
+
+
+
+
+
+// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+//         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//     }).addTo(mymap);
+
+//  $.getJSON("./PCTMap/pct.JSON", function(data) {
+//     console.log(data);
+// L.geoJSON(data, {style: myStyle}).addTo(mymap);
+// })
+</script>
+
+</html>
