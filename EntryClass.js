@@ -48,7 +48,8 @@ class Entry {
 	}
 
 	getIcon(){
-		return this.getMarkerIconController().getIcon(this);
+		var cont = this.getMarkerIconController();
+		return cont.getIcon(this);
 	}
 
 	onClick(){

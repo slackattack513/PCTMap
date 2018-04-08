@@ -9,7 +9,9 @@ class entryController {
     addEntry(label, entry) {
         if (!this._entries[label]) {
             this._entries[label] = entry;
+            this.updateMostRecent(label, entry);
         }
+
     }
 
     updateMostRecent(newLabel, entry){

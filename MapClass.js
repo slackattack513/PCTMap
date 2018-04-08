@@ -2,7 +2,7 @@
   // L.marker([51.941196,4.512291], {icon: redMarker}).addTo(map);
 
 var mostRecentMarker = L.AwesomeMarkers.icon({
-            // prefix : 'fa',
+            prefix : 'fa',
             icon: 'coffee',
             markerColor: 'red'
         });
@@ -41,7 +41,7 @@ class Map {
         var m = this;
         console.log(this);
         console.log(entry);
-        var marker = new L.marker(entry.getCoordinates(), mostRecentMarker).addTo(m.getMap());
+        var marker = new L.marker(entry.getCoordinates(), {icon: entry.getIcon()}).addTo(m.getMap());
         marker.bindPopup(entry.getDescription());
         marker.on("dblclick", (ev)=>entry.onClick());
     }

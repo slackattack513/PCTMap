@@ -15,7 +15,7 @@ var fs = require("fs");
 function makeMap(options) {
     var DOM_ID = options && options.id ? options.id : 'map';
     var mymap = new Map(DOM_ID);
-    var PCTData = JSON.parse(fs.readFileSync('./PCTMap/pct.JSON', 'utf8'));
+    var PCTData = JSON.parse(fs.readFileSync('pct.JSON', 'utf8'));
     PCTLayer = new GeoJSONLayer({ "data": PCTData, "map": mymap.getMap(), "style": myStyle });
     return mymap;
 }

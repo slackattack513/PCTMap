@@ -11,11 +11,12 @@ class markerIconController {
 
 
     getIcon(object) {
-
+        console.log("In getIcon");
+        console.log("icon object: "+object.constructor.name);
         switch (object.constructor.name) {
             case "Entry":
                 if (this._entryController.isMostRecent(object)) {
-                    return getMostRecentMarker();
+                    return this.getMostRecentMarker();
                 } else {
                 	return this.getStandardEntryMarker();
                 }
@@ -26,13 +27,14 @@ class markerIconController {
     getMostRecentMarker(options) {
         var mostRecentMarker = L.AwesomeMarkers.icon({
             // prefix : 'fa',
-            icon: 'coffee',
+            icon: 'exclamation',
             markerColor: 'red'
         });
         return mostRecentMarker;
     }
 
     getStandardEntryMarker(options) {
+        console.log("getting standard marker");
     	var stdIcon = L.AwesomeMarkers.icon({
     		icon: 'map',
     		markerColor: 'red'
