@@ -34,6 +34,14 @@ class mainViewController {
         }
     }
 
+    setEntryController(eC){
+    	this._entryController = eC;
+    }
+
+    getEntryController(){
+    	return this._entryController;
+    }
+
     getModule(label){
 		return this._modules[label];
     }

@@ -3,7 +3,7 @@
 class Entry {
 	constructor(options){
 	if (options){
-		this._markerIconController = options.markerIconController || undefined;
+		// this._markerIconController = options.markerIconController || undefined;
 		this._controller = options.controller || undefined;
 		this._fullText = options.fullText || "";
 		this._description = options.description || "";
@@ -42,19 +42,7 @@ class Entry {
 	return this.getCoordinates()[1];
 	}
 
-	getMarkerIconController(){
-		return this._markerIconController;
-	}
 
-	getIcon(){
-		var cont = this.getMarkerIconController();
-		return cont.getIcon(this);
-	}
-
-		getActiveIcon(){
-		var cont = this.getMarkerIconController();
-		return cont.getActiveIcon(this);
-	}
 
 	showEntryModule(){
 		// return this._onDoubleClick;

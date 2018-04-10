@@ -445,8 +445,11 @@ class GeoJSONLayer {
 //         // .then(()=> {return Promise.resolve(true)})
 //         .catch(err => {console.log(err); loaded = true;}); 
 
-var mvController = new mainViewController(document.getElementById('main_content'))
+
 var eController = new entryController();
+var mvController = new mainViewController(document.getElementById('main_content'))
+mvController.setEntryController(eController);
+
 var miController = new markerIconController(eController);
 
 
@@ -454,7 +457,9 @@ var picRowParent = document.getElementById("main_content");
 var picRow = new pictureRow(picRowParent);
 
 
-newmap = makeMap();
+newmap = makeMap({"mainViewController": mvController});
+
+
 var newEntry = new Entry({
     "fullText": "Started the PCT in Campo today!",
     "description": "The Beginning",
