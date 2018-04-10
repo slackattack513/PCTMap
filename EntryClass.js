@@ -1,7 +1,6 @@
 // Submission Data
 
 class Entry {
-	
 	constructor(options){
 	if (options){
 		this._markerIconController = options.markerIconController || undefined;
@@ -52,9 +51,21 @@ class Entry {
 		return cont.getIcon(this);
 	}
 
+		getActiveIcon(){
+		var cont = this.getMarkerIconController();
+		return cont.getActiveIcon(this);
+	}
+
+	showEntryModule(){
+		// return this._onDoubleClick;
+		this.getController().apply(this._onDoubleClick, this, "entry");
+	}
+
 	onClick(){
 		if (this._onDoubleClick){
-			this.getController().apply(this._onDoubleClick, this, "entry");
+			console.log("dbl click was registered");
+			// this.getController().apply(showEntryModule(), this, "entry");
+			this.showEntryModule();
 		} else {
 		if (this._onDblClickDOMText){
 			this._onDblClickDOMText.innerHTML = this.getFullText();

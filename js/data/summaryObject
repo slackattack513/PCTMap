@@ -1,0 +1,20 @@
+// summaryObject - contains basic information 
+
+class summaryObject {
+	constructor(requiredFields, optionalFields) {
+
+	}
+
+	setRequiredFields(requiredFieldsObject){
+	this._requiredFields = requiredFieldsObject;
+	}
+
+
+	load() {
+
+	}
+
+	save(){
+
+	}
+}

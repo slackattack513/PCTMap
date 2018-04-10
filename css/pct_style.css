@@ -33,7 +33,7 @@
 
    #map {
        height: 500px;
-       width: 500px;
+       width: 100%;
        margin: auto;
    }
 
@@ -54,7 +54,7 @@
 
    .sub_map_module {
        border: 5px solid red;
-       margin: auto;
+       /*margin: auto;*/
        /*  display:flex;
    justify-content: center;*/
    }
@@ -91,4 +91,23 @@
        font-size: 18px;
        margin-top: 10px;
        /*color:black;*/
+   }
+
+/* popup styling */
+
+  .popup {
+    display:flex;
+  }
+
+  .popup span {
+      white-space:pre;
+  }
+   .popup span svg{
+    margin-top:0px;
+  
+   }
+
+
+   ul {
+    margin-bottom: 0px;
    }

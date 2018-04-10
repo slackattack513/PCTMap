@@ -1,15 +1,16 @@
 // DetailedEntryModule
 
-class detailedEntryModule {
+class detailedEntryModule extends generalModule{
 
-	constructor(entry, parent){
-		this._parentNode = parent;
-		this.setEntry(entry);
+	constructor(object, parent){
+		/*this._parentNode = parent;
 		this.makeContainer();
+		this.fillContainer();*/
+		super(object, parent);
 	}
 
 	createDetailedTextDOM(options){
-		this._detailedTextDOM = document.createElement('p');
+		this._detailedTextDOM = this.createElement('p');
 		return this._detailedTextDOM;
 	}
 
@@ -28,36 +29,6 @@ class detailedEntryModule {
 		}
 	}
 
-	removeCSSClass(oldClass){
-		this.getContainer().classList.remove(oldClass);
-	}
-
-	addCSSClass(newClass){
-			this.getContainer().classList.add(newClass)
-		}
-
-	getParentNode(){
-		return this._parentNode;
-	}
-
-	setParentNode(parent){
-		this._parentNode = parent;
-	}
-
-	changeParentNode(newParent){
-		this.removeFromParent();
-		this.setParentNode(newParent);
-
-	}
-
-	showOnParent(){
-		this.getParentNode().appendChild(this.getContainer());
-	}
-
-	removeFromParent(){
-	this.getParentNode().removeChild(this.getContainer());
-	}
-
 	setEntry(entry){
 		this._entry = entry;
 	}
@@ -72,9 +43,6 @@ class detailedEntryModule {
 		this.updatePicRow();
 	}
 
-	getContainer(){
-		return this._container;
-	}
 
 	updatePicRow(){
 		this.getPictureRow().removeAllContent();
@@ -89,14 +57,22 @@ class detailedEntryModule {
 		return this._picRow;
 	}
 
-	makeContainer(){
-		this._container = document.createElement("div");
+
+	fillContainer(){
 		var textDOM = this.createDetailedTextDOM();
 		this.setDetailedText();
 		var picRow = this.createPictureRow();
 		this.updatePicRow();
 		this._container.appendChild(textDOM);
 		this._container.appendChild(picRow.getRowDOM());
+	}
+
+	acceptObject(object){
+		if (object.constructor.name == "Entry"){
+		this.setEntry(object);
+	} else {
+		console.error('Tried to pass an oject to detailedEntryModuleClass that is not an Entry object!\n');
+	}
 	}
 
 
